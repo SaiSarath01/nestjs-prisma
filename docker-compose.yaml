@@ -1,5 +1,5 @@
 services:
-  mysql:
+  mongo:
     image: mysql
     env_file:
       - .env
