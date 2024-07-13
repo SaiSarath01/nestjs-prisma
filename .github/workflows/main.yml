@@ -1,0 +1,19 @@
+name: Pre-commit checks
+
+on:
+  push:
+    branches: [ '**' ]  # This triggers on all branches
+
+jobs:
+  pre-build-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 16  # Adjust this based on your project requirements
+      - name: Install dependencies
+        run: npm ci  # Adjust this based on your package manager (yarn, pnpm)
+      - name: Run Husky pre-commit hooks
+        run: npx husky install && npm run lint  # Adjust the test command if needed
